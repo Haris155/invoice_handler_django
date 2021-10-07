@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<div class="row">
+    <div class="col-12">
+        <div class="card mb-4">
+            <div class="card-header pb-0">
+                <h6>UPDATE DESIGN</h6>
+            </div>
+            <div class="card-body px-5 pt-0 pb-2">
+                <form method="post" action="{% url 'updatedesign' %}" enctype="multipart/form-data">
+        <input name="did" value="{{d.did}}" type="hidden">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-8">
+                <div class="mb-3">
+                    <label for="dname" class="form-label">Design Name</label>
+                    <input type="text" value="{{d.name}}" name="dname" class="form-control" id="dname" aria-describedby="emailHelp">
+                </div>
+            </div>
+            <div class="col">
+                <div class="mb-3">
+                    <label for="orderid" class="form-label">Order ID</label>
+                        <input type="number" value="{{d.orderid}}" required name="orderid" class="form-control" id="orderid" aria-describedby="emailHelp">
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-2">
+                <label class="form-check-label" for="SwitchCheck">Status <br>PAID/UNPAID</label>
+                {% if d.ispaid %}
+                <div class="form-check form-switch">
+                    <input class="form-check-input" name="ispaid" checked type="checkbox" id="SwitchCheck">
+                </div>
+                {% else %}
+                <div class="form-check form-switch">
+                    <input class="form-check-input" name="ispaid" type="checkbox" id="SwitchCheck1">
+                </div>
+                {% endif %}
+            </div>
+            <div class="col">
+                <label for="formFile" class="form-label">Select Design Image</label>
+                <div class="mb-3">
+                    <input class="form-control" name="image" type="file" id="formFile">
+                </div>
+            </div>
+            <div class="col-3">
+                <label for="customer" class="form-label">Selected Image</label>
+                <div class="col mb-3">
+                    <img src="{{d.image.url}}" height="80" width="100" />
+
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col mb-3">
+                <label for="types" class="form-label">Select Design Type</label>
+                    <input value="{{type.type}}" class="form-control" id="types" disabled>
+            </div>
+            <div class="col mb-3">
+                <label for="customer" class="form-label">Select Customer</label>
+                <input value="{{cust.fname}}" readonly class="form-control" id="customer">
+            </div>
+            <div class="col">
+                <label for="price" class="form-label">Price</label>
+                <div class="input-group mb-3">
+                  <span class="input-group-text">$</span>
+                  <input type="number" value="{{d.price}}" name="price" id="price" class="form-control" aria-label="Dollar amount (with dot and two decimal places)">
+                </div>
+            </div>
+
+        </div>
+        <button type="submit" class="btn btn-primary">Update</button>
+    </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

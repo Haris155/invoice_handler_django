@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block customjava %}
+<script type="text/javascript">
+         $(function () {
+             $('#datetimepicker1').datetimepicker();
+         });
+
+</script>
+{% endblock %}
+
+{% block body %}
+
+<div class="row">
+    <div class="col-12">
+        <div class="card mb-4">
+            <div class="card-header pb-0">
+                <h6>ADD DESIGN TYPES</h6>
+            </div>
+            <div class="card-body px-5 pt-0 pb-2">
+                <form method="post" action="{% url 'adddesigntypes' %}">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col">
+                <div class="form-group">
+                    <label for="types">Add Design Types</label>
+                    <input type='text' name="types" class="form-control" id="types"/>
+                </div>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

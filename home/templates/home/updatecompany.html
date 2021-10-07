@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<div class="row">
+    <div class="col-12">
+        <div class="card mb-4">
+            <div class="card-header pb-0">
+                <h6>UPDATE COMPANY</h6>
+            </div>
+            <div class="card-body px-5 pt-0 pb-2">
+                <form method="post" action="/updatecompany/">
+        <input type="hidden" name="cid" value="{{comp.companyid}}">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col">
+                <div class="mb-3">
+                    <label for="fname" class="form-label">Company Name</label>
+                    <input type="text" value="{{comp.name}}" name="cname" class="form-control" id="fname" required>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="mb-3">
+                    <label for="address" class="form-label">Address</label>
+                    <input type="text" value="{{comp.address}}" name="address" class="form-control" id="address" required>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col col-4">
+                <div class="mb-3">
+                    <label for="zipcode" class="form-label">Zip Code</label>
+                    <input type="number" value="{{comp.zipcode}}" name="zipcode" class="form-control" id="zipcode" required>
+                </div>
+            </div>
+            <div class="col">
+                <div class="mb-3">
+                    <label for="city" class="form-label">City</label>
+                    <input type="text" value="{{comp.city}}" name="city" class="form-control" id="city" required>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="mb-3">
+                    <label for="state" class="form-label">State</label>
+                    <input type="text" value="{{comp.state}}" name="state" class="form-control" id="state" required>
+                </div>
+            </div>
+            <div class="col mb-3">
+                <label for="customer" class="form-label">Select Customer</label>
+                <input name="customer" class="form-control" value="{{cust.fname}}" disabled id="customer">
+            </div>
+        </div>
+        <br>
+        <button type="submit" class="btn btn-primary" value="Save">Submit</button>
+    </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

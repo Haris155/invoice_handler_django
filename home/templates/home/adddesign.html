@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<div class="row">
+    <div class="col-12">
+        <div class="card mb-4">
+            <div class="card-header pb-0">
+                <h6>ADD DESIGNS</h6>
+            </div>
+            <div class="card-body px-5 pt-0 pb-2">
+                <form method="post" action="/adddesign/" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-8">
+                <div class="mb-3">
+                    <label for="dname" class="form-label">Design Name</label>
+                    <input type="text" required name="dname" class="form-control" id="dname" aria-describedby="emailHelp">
+                </div>
+            </div>
+            <div class="col">
+                <div class="mb-3">
+                    <label for="orderid" class="form-label">Order ID</label>
+                    <input type="number" required name="orderid" class="form-control" id="orderid" aria-describedby="emailHelp">
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="mb-3">
+                    <label for="formFile" class="form-label">Select Design Artwork</label>
+                    <input class="form-control" required name="image" type="file" id="formFile">
+                </div>
+            </div>
+            <div class="col mb-3">
+                <label for="customer" class="form-label">Select Customer</label>
+                <select class="form-select" name="customer" id="customer" required>
+                    <option selected disabled value="" >Select a Customer</option>
+                    {% for c in customers %}
+                    <option required value="{{c.customerid}}">{{c.fname}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col mb-3">
+                <label for="types" class="form-label">Select Design Type</label>
+                <select class="form-select" name="types" id="types" required>
+                    <option selected disabled value="">Select Design Type</option>
+                    {% for d in designtype %}
+                    <option value="{{d.tid}}">{{d.type}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col">
+                <label for="price" class="form-label">Price</label>
+                <div class="input-group mb-3">
+                  <span class="input-group-text">$</span>
+                  <span class="input-group-text">0.00</span>
+                  <input type="number" name="price" id="price" required class="form-control" aria-label="Dollar amount (with dot and two decimal places)">
+                </div>
+            </div>
+
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<!--alert-->
+<!--<div class="alert alert-secondary alert-dismissible fade show my-3" role="alert">-->
+<!--    <strong>Current Date!</strong> Will be automatically Generated.-->
+<!--    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>-->
+<!--</div>-->
+
+<div class="row">
+    <div class="col-12">
+        <div class="card mb-4">
+            <div class="card-header pb-0">
+                <h6>CREATE INVOICE</h6>
+            </div>
+            <div class="card-body px-5 pt-0 pb-2">
+                <form method="post" action="{% url 'save_invoice' %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col">
+                <label for="customer" class="form-label">Select Month's Invoice</label>
+                <div class="form-group">
+                    <input class="form-control" required name="invoicedate" type="text" id="datepicker" autocomplete="off">
+                </div>
+            </div>
+            <div class="col mb-3">
+                <label for="customer" class="form-label">Select Customer</label>
+                <select class="form-select" name="customer" id="customer" required>
+                    <option selected disabled value="">Select a Customer</option>
+                    {% for c in customers %}
+                    <option value="{{c.customerid}}">{{c.fname}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-check form-switch">
+                <input class="form-check-input" name="paid" type="checkbox" id="flexSwitchCheckDefault">
+                <label class="form-check-label" for="flexSwitchCheckDefault">Check to Mark Paid</label>
+            </div>
+        </div>
+        <br>
+        <input type="submit" class="btn btn-primary"/>
+    </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

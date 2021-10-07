@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<div class="row">
+    <div class="col-12">
+        <div class="card mb-4">
+            <div class="card-header pb-0">
+                <h6>UPDATE CUSTOMER</h6>
+            </div>
+            <div class="card-body px-5 pt-0 pb-2">
+                <form method="post" action="/updatecustomer/">
+        <input type="hidden" name="cid" value="{{cust.customerid}}">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col">
+                <div class="mb-3">
+                    <label for="fname" class="form-label">Full Name</label>
+                    <input type="text" value="{{cust.fname}}" required name="fname" class="form-control" id="fname" aria-describedby="emailHelp">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" value="{{cust.email}}" required name="email" class="form-control" id="email" aria-describedby="emailHelp">
+                </div>
+            </div>
+            <div class="col">
+                <div class="mb-3">
+                    <label for="contact" class="form-label">Contact</label>
+                    <input type="number" value="{{cust.contact}}" required name="contact" class="form-control" id="contact" aria-describedby="emailHelp">
+                </div>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
