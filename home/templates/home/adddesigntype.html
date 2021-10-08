@@ -1,13 +1,7 @@
 {% extends 'base.html' %}
 
-{% block customjava %}
-<script type="text/javascript">
-         $(function () {
-             $('#datetimepicker1').datetimepicker();
-         });
-
-</script>
-{% endblock %}
+{% block destypeactive %}active{% endblock %}
+{% block ontop %}ADD DESIGN TYPES{% endblock %}
 
 {% block body %}
 
@@ -15,7 +9,7 @@
     <div class="col-12">
         <div class="card mb-4">
             <div class="card-header pb-0">
-                <h6>ADD DESIGN TYPES</h6>
+<!--                <h6>ADD DESIGN TYPES</h6>-->
             </div>
             <div class="card-body px-5 pt-0 pb-2">
                 <form method="post" action="{% url 'adddesigntypes' %}">

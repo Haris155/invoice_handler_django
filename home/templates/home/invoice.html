@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
-
+{% block geninvoiceactive %}active{% endblock %}
+{% block ontop %}GENERATE INVOICE'S PDF{% endblock %}
 {% block body %}
 
 <!--alert-->
@@ -13,7 +14,7 @@
     <div class="col-12">
         <div class="card mb-4">
             <div class="card-header pb-0">
-                <h6>GENERATE INVOICE'S PDF</h6>
+<!--                <h6>GENERATE INVOICE'S PDF</h6>-->
             </div>
             <div class="card-body px-5 pt-0 pb-2">
                 <form method="post" action="{% url 'createpdf' %}" enctype="multipart/form-data">
