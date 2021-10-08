@@ -27,8 +27,6 @@ def create_pdf(request):
         customerCompany = ModelCompany.objects.filter(custid=customerid).first()
         customerDesigns = ModelDesigns.objects.filter(custid=customerid)
 
-        inc = make_inc(flag)
-
         # count Total price of targeted customer
         total = countTotal(customerDesigns)
         # getting current date in format
@@ -37,7 +35,7 @@ def create_pdf(request):
         context = {
             'cust': selectedcustomer, 'comp': customerCompany,
             'designs': customerDesigns, 'total': total, 'date': dateTime,
-            'crt_date': x, 'inv_no': inc()
+            'crt_date': x
         }
 
         response = HttpResponse(content_type='application/pdf')
@@ -69,17 +67,3 @@ def designsPaid(obj, flag):
         else:
             o.ispaid = True
             o.save()
-
-
-def make_inc(flag):
-    val = [0]
-    if flag != 'on':
-        def inc():
-            val[0] += 1
-            print(val[0])
-            return val[0]
-
-        return inc
-    else:
-        temp = 'Preview Only'
-        return temp
